@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+html, body {
+    scroll-behavior: smooth !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* PALETA DO SEU AMIGO COM CONTRASTE APERFEIÇOADO */
+:root {
+    --color-primary: #A87A2A;        /* Dourado Ouro */
+    --color-secondary: #3A3834;      /* Cinza Grafite Escuro */
+    --color-accent: #E2B030;         /* Dourado Brilhante */
+    --color-background: #FAFAFA;     /* Off-White */
+    --color-section-alt: #F1F3F5;    /* Cinza Claro para Intercalar */
+    --color-card: #FFFFFF;
+    --color-text: #222222;
+    --color-subtext: #555555;
+    --color-border: #E0E0E0;
+    --shadow-soft: 0 10px 30px -5px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+    --color-primary: #D4AF37;
+    --color-secondary: #181716;
+    --color-accent: #F3CA28;
+    --color-background: #121212;
+    --color-section-alt: #1A1A1A;
+    --color-card: #1E1E1E;
+    --color-text: #F1F5F9;
+    --color-subtext: #A0A0A0;
+    --color-border: #2D2D2D;
+    --shadow-soft: 0 10px 30px -5px rgba(0,0,0,0.5);
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* NAVBAR FIXA DE RESPEITO */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85px;
+    background: var(--color-secondary);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6%;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-weight: 800;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+nav .logo span {
+    color: #FFFFFF;
+}
+
+nav .menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+nav a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.3s;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -6px;
+    left: 0;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease-out;
+}
+
+nav a:hover {
+    color: var(--color-accent);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--color-primary);
+    color: #FFFFFF;
+}
+
+/* HERO BANNER DE IMPACTO */
+header#home {
+    margin-top: 85px;
+    width: 100%;
+    padding: 100px 20px 90px;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #21201E 100%);
+    text-align: center;
+    color: #FFFFFF;
+}
+
+header .hero-content {
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    font-size: 1.3rem;
+    color: #E2E8F0;
+    font-weight: 300;
+    max-width: 700px;
+}
+
+.btn-hero {
+    margin-top: 10px;
+    padding: 16px 36px;
+    background: var(--color-primary);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(168, 122, 42, 0.4);
+}
+
+.btn-hero:hover {
+    background: var(--color-accent);
+    color: #000000;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(226, 176, 48, 0.5);
+}
+
+/* SEÇÕES COM INTERCALAÇÃO DE FUNDO */
+section {
+    padding: 90px 20px;
+    width: 100%;
+}
+
+.section-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+section h2 {
+    color: var(--color-primary);
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* SEÇÃO SOBRE COM CARDS DIFERENCIAIS */
+#sobre {
+    background: var(--color-background);
+}
+
+.about-text {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 50px;
+    font-size: 1.15rem;
+    color: var(--color-subtext);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: var(--color-card);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card .icon {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--color-text);
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: var(--color-subtext);
+}
+
+/* SEÇÃO RESULTADOS */
+#resultados {
+    background: var(--color-section-alt);
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card p {
+    padding: 22px;
+    font-size: 1rem;
+    color: var(--color-subtext);
+}
+
+/* SEÇÃO CONTATO / FORMULÁRIO */
+#contato {
+    background: var(--color-background);
+}
+
+#contato form {
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 45px;
+    background: var(--color-card);
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    color: var(--color-text);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(168, 122, 42, 0.3);
+}
+
+button[type="submit"] {
+    padding: 18px;
+    background: var(--color-primary);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background: var(--color-accent);
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(226, 176, 48, 0.4);
+}
+
+/* FOOTER */
+footer {
+    width: 100%;
+    text-align: center;
+    background: var(--color-secondary);
+    color: #FFFFFF;
+    padding: 50px 20px;
+    border-top: 4px solid var(--color-primary);
+}
+
+footer p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+footer .credits {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    nav {
+        height: auto;
+        padding: 15px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    header#home {
+        margin-top: 125px;
+        padding: 60px 20px;
+    }
+    header h1 {
+        font-size: 2.3rem;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
