@@ -57,16 +57,24 @@ export default function App() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3333/api/appointments', {
+      // Ajustado para a porta 3001 do backend e enviando os campos requeridos pelo Prisma
+      const response = await fetch('http://localhost:3001/api/appointments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service,
+          date: formData.birthDate,
+          notes: `E-mail: ${formData.email} | Plano: ${formData.healthInsurance} | Obs: ${formData.notes || 'Nenhuma'}`
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Erro ao registrar agendamento.');
+        throw new Error('Erro ao registrar agendamento no servidor.');
       }
 
+      // Redirecionamento para o WhatsApp
       const telefoneDestino = '5511943200057';
       let texto = `*NOVO PEDIDO DE AGENDAMENTO - SITE*\n\n`;
       texto += `*Nome:* ${formData.name}\n`;
@@ -80,7 +88,8 @@ export default function App() {
       const linkWhatsApp = `https://wa.me/${telefoneDestino}?text=${encodeURIComponent(texto)}`;
       window.open(linkWhatsApp, '_blank');
 
-      alert('Solicitação enviada com sucesso!');
+      alert('Solicitação enviada e gravada no banco com sucesso!');
+      
       setFormData({
         name: '',
         phone: '',
@@ -92,7 +101,7 @@ export default function App() {
       });
     } catch (error) {
       console.error(error);
-      alert('Erro ao processar agendamento. Verifique se o servidor backend está rodando.');
+      alert('Erro ao processar agendamento. Verifique se o servidor backend tá rodando na porta 3001.');
     } finally {
       setLoading(false);
     }
